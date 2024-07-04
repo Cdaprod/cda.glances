@@ -11,7 +11,7 @@ services:
     network_mode: "host"
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
-      - "./glances.conf:/glances/conf/glances.conf"
+      - "./glances.conf:/root/.config/glances/glances.conf"
     environment:
       - TZ=${TZ}
-      - "GLANCES_OPT=-w"
+    command: ["python", "-m", "glances", "-C", "/root/.config/glances/glances.conf", "-w"]
